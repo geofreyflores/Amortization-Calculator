@@ -118,7 +118,7 @@
         paymentIndex : null, amount : null, interest : null,
         principal : null, balance : balance
       }];
-      while (Math.round(balance * 100) / 100 > 0) {
+      while (Math.round(balance * 100) / 100 > 0) { // round off balance
         payment = amortSvc.createPayment($scope.info.paymentAmt, balance, periodRate, index);
         balance = payment.balance; ++index;
         $scope.info.payments.push(payment);
