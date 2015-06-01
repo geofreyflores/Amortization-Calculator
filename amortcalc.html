@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <script data-require="angular.js@1.4.0" data-semver="1.4.0" src="https://code.angularjs.org/1.4.0/angular.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+
+  <body data-ng-app="amortApp" data-ng-controller="amortCtrl">
+  
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" target="_blank">Made by Geofrey Flores</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container">
+      
+      <div class="page-header" id="banner">
+        <div class="row">
+          <div class="col-lg-8 col-md-8 col-sm-8">
+            <h1>Amortization Calculator</h1>
+            <p class="lead">Calculate your loan repayment schedule</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container">
+      <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-5">
+          
+          <div id="summary" class="row">
+            <h2>Payment Summary</h2>
+            <p>You have a total of <span class="text-warning">{{ info.numPeriods | number }} {{ info.frequencyTxt | lowercase }} payments</span> 
+            of <span class="text-warning">{{ info.paymentAmt || 0 | currency }}</span><span data-ng-hide="inputFields.freq.value === 12">, or 
+            <span class="text-warning">{{ info.monthlyPayment || 0 | currency }}/month</span></span>.</p>
+            <p>You save <span class="text-warning">{{ info.savings || 0 | currency }}</span> over the life of the loan compared to a monthly payment.</p>
+            <p>You have a total loan payment of <span class="text-warning">{{ info.totalPayment || 0 | currency }}</span> 
+            and accrue a total interest of <span class="text-warning">{{ info.totalInterest || 0 | currency }} ({{ info.totalIntPercentage | number:2 }}%)</span> over the life of the loan.</p>
+          </div>
+          
+          
+          <div id="info" class="row">
+            <h2>About your loan</h2>
+            <div class="form-group" data-ng-repeat="(id, data) in inputFields" data-ng-switch="data.type">
+              <label for="{{id}}" class="col-lg-6 control-label">{{ data.label }}:</label>
+              
+              <div class="col-lg-5">
+                <input data-ng-switch-when="NUMBER" 
+                  id="{{id}}" type="number" class="form-control" 
+                  data-ng-model="data.value"
+                  data-ng-model-options="{ debounce: debounce }">
+                  
+                <select data-ng-switch-when="SELECT"
+                  id="{{id}}" data-ng-model="data.value" class="form-control"
+                  data-ng-options="opt.value as opt.text for opt in data.options"></select>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="schedule" class="col-lg-7 col-md-7 col-sm-7">
+          <h2>Payment Schedule</h2>
+          <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+              <th id="payment">#</th>
+              <th id="amount">Payment </th> 
+              <th id="interest">Interest</th>
+              <th id="principal">Principal</th>
+              <th id="balance">Balance</th>
+            </tr>
+            </thead>
+            
+            <tbody>
+            <tr data-ng-repeat="p in info.payments">
+              <td headers="payment">{{ p.paymentIndex }}</td>
+              <td headers="amount">{{ p.amount | currency }}</td>
+              <td headers="interest">{{ p.interest | currency }}</td>
+              <td headers="principal">{{ p.principal | currency }}</td>
+              <td headers="balance">{{ p.balance | currency }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+      </div>
+    
+    </div>
+    
+
+  </body>
+</html>
