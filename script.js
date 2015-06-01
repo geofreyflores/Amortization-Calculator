@@ -110,7 +110,7 @@
       var monthlyAmt = amortSvc.calcPayments(principal, monthlyRate, monthlyPeriods);
       var totalPaymentMonthly = monthlyAmt * monthlyPeriods;
       $scope.info.monthlyPayment = $scope.info.paymentAmt * yrFreq / 12;
-      $scope.info.savings = (monthlyAmt - $scope.info.monthlyPayment) * monthlyPeriods;
+      $scope.info.savingsPerYr = (monthlyAmt - $scope.info.monthlyPayment) * 12;
       
       // update table; recalculate row payments
       var balance = principal, index = 1, payment;
