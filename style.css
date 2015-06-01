@@ -1,7 +1,17 @@
 /* Styles go here */
 
-body { padding-top: 35px; }
 h1{ font-size: 3em;}
+
+.lead { margin-bottom: 10px !important }
+.page-header { margin-bottom: 10px !important }
+/* https://stackoverflow.com/questions/18599778/decreasing-height-of-bootstrap-3-0-navbar */
+.navbar-nav > li > a, .navbar-brand {
+    padding-top:4px !important; 
+    padding-bottom:0 !important;
+    height: 28px;
+}
+.navbar {min-height:28px !important;}
+
 #info{ padding-bottom:15px; padding-right:25px; }
 #info h2 { padding-bottom:10px; }
 /*clear float*/
