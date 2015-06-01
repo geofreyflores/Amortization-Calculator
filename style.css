@@ -10,7 +10,9 @@ h1{ font-size: 3em;}
     padding-bottom:0 !important;
     height: 28px;
 }
+.navbar-nav li { padding-top: 5px; }
 .navbar {min-height:28px !important;}
+
 
 #info{ padding-bottom:15px; padding-right:25px; }
 #info h2 { padding-bottom:10px; }
