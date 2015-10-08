@@ -56,9 +56,9 @@
     ];
     
     $scope.inputFields = {
-      principal : { label : "Loan Amount" , type : "NUMBER", value : 10000},
-      annualRate : { label : "Annual Interest Rate (%)" , type : "NUMBER", value : 5.00},
-      loanTerm : { label : "Length of term in Years" , type : "NUMBER", value : 1},
+      principal : { label : "Loan Amount" , type : "NUMBER", value : 350000},
+      annualRate : { label : "Annual Interest Rate (%)" , type : "NUMBER", value : 3.25},
+      loanTerm : { label : "Length of term in Years" , type : "NUMBER", value : 25},
       freq : {label : "Payment Frequency", type : "SELECT", options : $scope.yrFrequency, value : 12 },
       compPeriod : { label : "Compound Period (optional)" , type : "SELECT", options : $scope.yrFrequency, value : 12 },
     };
@@ -110,6 +110,7 @@
       var monthlyAmt = amortSvc.calcPayments(principal, monthlyRate, monthlyPeriods);
       var totalPaymentMonthly = monthlyAmt * monthlyPeriods;
       $scope.info.monthlyPayment = $scope.info.paymentAmt * yrFreq / 12;
+	  $scope.info.monthlyInterest = ($scope.info.totalInterest / numPeriods) * yrFreq / 12;
       $scope.info.savingsPerYr = (monthlyAmt - $scope.info.monthlyPayment) * 12;
       
       // update table; recalculate row payments

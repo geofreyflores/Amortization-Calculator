@@ -51,6 +51,7 @@
             <p>You have a total of <span class="text-warning">{{ info.numPeriods | number }} {{ info.frequencyTxt | lowercase }} payments</span> 
             of <span class="text-warning">{{ info.paymentAmt || 0 | currency }}</span><span data-ng-hide="inputFields.freq.value === 12">, or 
             <span class="text-warning">{{ info.monthlyPayment || 0 | currency }}/month</span></span>.</p>
+			<p>You pay {{ info.monthlyInterest || 0 | currency }} in interest, on average, every month.</p>
             <p>You save <span class="text-warning">{{ info.savingsPerYr || 0 | currency }}/year</span> 
 			in interest over the life of the loan compared to a monthly payment.</p>
             <p>You have a total loan payment of <span class="text-warning">{{ info.totalPayment || 0 | currency }}</span> 
